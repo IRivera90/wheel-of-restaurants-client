@@ -3,11 +3,17 @@ import { Route } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
+import Home from '../Home/Home'
 import Header from '../Header/Header'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+
+import Restaurants from '../Restaurants/Restaurants'
+import Restaurant from '../Restaurant/Restaurant'
+import RestaurantCreate from '../RestaurantCreate/RestaurantCreate'
+import RestaurantEdit from '../RestaurantEdit/RestaurantEdit'
 
 class App extends Component {
   constructor () {
@@ -42,6 +48,7 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' component={Home}/>
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -53,6 +60,18 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/restaurants' render={() => (
+            <Restaurants user={user} msgAlert={this.msgAlert} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/restaurants/:id' render={({ match }) => (
+            <Restaurant user={user} msgAlert={this.msgAlert} match={match} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/restaurants-create' render={() => (
+            <RestaurantCreate user={user} msgAlert={this.msgAlert} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/restaurants/:id/edit' render={({ match }) => (
+            <RestaurantEdit user={user} msgAlert={this.msgAlert} match={match} />
           )} />
         </main>
       </Fragment>
