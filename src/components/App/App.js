@@ -14,6 +14,7 @@ import Restaurants from '../Restaurants/Restaurants'
 import Restaurant from '../Restaurant/Restaurant'
 import RestaurantCreate from '../RestaurantCreate/RestaurantCreate'
 import RestaurantEdit from '../RestaurantEdit/RestaurantEdit'
+import Randomize from '../Randomize/Randomize'
 
 class App extends Component {
   constructor () {
@@ -72,6 +73,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute exact user={user} path='/restaurants/:id/edit' render={({ match }) => (
             <RestaurantEdit user={user} msgAlert={this.msgAlert} match={match} />
+          )} />
+          <AuthenticatedRoute exact user={user} path='/restaurants/:id' render={({ match }) => (
+            <Randomize user={user} msgAlert={this.msgAlert} match={match} />
           )} />
         </main>
       </Fragment>
