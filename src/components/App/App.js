@@ -74,7 +74,7 @@ class App extends Component {
           <AuthenticatedRoute exact user={user} path='/restaurants/:id/edit' render={({ match }) => (
             <RestaurantEdit user={user} msgAlert={this.msgAlert} match={match} />
           )} />
-          <AuthenticatedRoute exact user={user} path='/restaurants/:id' render={({ match }) => (
+          <AuthenticatedRoute exact user={user} path='/restaurants/' render={({ match }) => (
             <Randomize user={user} msgAlert={this.msgAlert} match={match} />
           )} />
         </main>

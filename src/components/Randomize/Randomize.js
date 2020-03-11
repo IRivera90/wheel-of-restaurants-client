@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
+const randomRestaurant = (restaurants) => restaurants[ Math.floor(Math.random() * (restaurants.length)) ]
+
 class Randomize extends Component {
   constructor () {
     super()
@@ -19,8 +21,7 @@ class Randomize extends Component {
     })
       .then(
         res => {
-          console.log(res)
-          this.setState({ restaurants: res.data.restaurants })
+          this.setState({ restaurants: res.data.restaurants, randRestaurant: randomRestaurant(res.data.restaurants) })
         })
       .catch(console.error)
   }
@@ -36,11 +37,10 @@ class Randomize extends Component {
     //     <Link to={`/restaurants/${restaurant._id}`}>{restaurant.name}</Link>
     //   </li>
     // ))
-    const randomRestaurant = this.state.restaurants[ Math.floor(Math.random() * (this.state.restaurants.length)) ]
     return (
       <div>
-        <button onClick={this.shuffleArray}> Randomize </button>
-        {randomRestaurant && randomRestaurant.name}
+        <button onClick={() => this.setState({ randRestaurant: randomRestaurant(this.state.restaurants) })}> Randomize </button>
+        <div> {this.state.randRestaurant && this.state.randRestaurant.name} </div>
       </div>
     )
   }
