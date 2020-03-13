@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Home = () => (
-  <h3>Welcome to the homepage</h3>
+  <h3>I Dunno Cafe: The `Dinner Spinner` </h3>
 )
 
 export default Home
